@@ -11,6 +11,27 @@ const notes = [{
     body: 'Get a new seat'
 }]
 
+const filters = {
+    searchText: ''
+}
+
+const renderNotes = function (notes, filters) {
+    const result = notes.filter(note => {
+        return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
+    })
+
+    const divParagraph = document.querySelector('#notes')
+    divParagraph.innerHTML = ''
+    
+    result.forEach(item => {
+      const p = document.createElement('p')
+      p.textContent = item.title
+      divParagraph.appendChild(p)
+    })
+}
+
+renderNotes(notes, filters)
+
 document.querySelector('#add-button').addEventListener('click', function (e) {
     console.log(e.target.textContent = 'Click here');
 })
@@ -22,5 +43,6 @@ document.querySelector('#remove-button').addEventListener('click', function (e) 
 })
 
 document.querySelector('#search-input').addEventListener('input', function(e) {
-    console.log(e.target.value);
+    filters.searchText = e.target.value;
+    renderNotes(notes, filters)
 })
