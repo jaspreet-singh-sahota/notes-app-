@@ -12,11 +12,15 @@ const notes = [{
 }]
 
 document.querySelector('#add-button').addEventListener('click', function (e) {
-    console.log(e.target.textContent = 'Click here')
+    console.log(e.target.textContent = 'Click here');
 })
 
 document.querySelector('#remove-button').addEventListener('click', function (e) {
     document.querySelectorAll('.notes').forEach(note => {
-        note.remove()
+        note.remove();
     })
+})
+
+document.querySelector('#search-input').addEventListener('input', function(e) {
+    console.log(e.target.value);
 })
