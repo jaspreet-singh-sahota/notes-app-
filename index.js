@@ -32,14 +32,15 @@ const renderNotes = function (notes, filters) {
 
 renderNotes(notes, filters)
 
-document.querySelector('#add-button').addEventListener('click', function (e) {
-    console.log(e.target.textContent = 'Click here');
-})
-
-document.querySelector('#remove-button').addEventListener('click', function (e) {
-    document.querySelectorAll('.notes').forEach(note => {
-        note.remove();
+document.querySelector('#notes-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    notes.push({
+        title: e.target.elements.titleText.value,
+        body: e.target.elements.noteText.value,
     })
+    renderNotes(notes, filters)
+    e.target.elements.titleText.value = '';
+    e.target.elements.noteText.value = ''
 })
 
 document.querySelector('#search-input').addEventListener('input', function(e) {

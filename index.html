@@ -11,8 +11,11 @@
     <h3>Takes notes and never forget</h3>
     <input type="text" id="search-input" placeholder="Search for notes" value="search">
     <div id="notes"></div>
-    <button id="add-button">Add Notes</button>
-    <button id="remove-button">Remove all notes</button>
+    <form id="notes-form">
+      <input type="text" placeholder="Enter the title" name="titleText">
+      <input type="text" placeholder="Enter your notes" name="noteText">
+      <button>submit</button>
+    </form>
     <script src="index.js"></script>
   </body>
 </html>
