@@ -47,3 +47,7 @@ document.querySelector('#search-input').addEventListener('input', function(e) {
     filters.searchText = e.target.value;
     renderNotes(notes, filters)
 })
+
+document.querySelector('#dropdown').addEventListener('change', (e) => {
+    console.log(e.target.value);
+})
