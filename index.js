@@ -39,6 +39,7 @@ renderNotes(notes, filters)
 document.querySelector('#notes-form').addEventListener('submit', function (e) {
     e.preventDefault();
     notes.push({
+        id: uuidv4(),
         title: e.target.elements.titleText.value,
         body: e.target.elements.noteText.value,
     })
