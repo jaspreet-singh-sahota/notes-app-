@@ -18,13 +18,19 @@ const renderNotes = function (notes, filters) {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
     });
 
-    const divParagraph = document.querySelector('#notes')
+    const divParagraph = document.querySelector('#notes');
     divParagraph.innerHTML = ''
     
     result.forEach(item => {
-      const p = document.createElement('p')
-      p.textContent = item.title
-      divParagraph.appendChild(p)
+        const div = document.createElement('div');
+        const p = document.createElement('span');
+        const removeButton = document.createElement('button')
+
+        removeButton.textContent = 'X'
+        p.textContent = item.title
+        divParagraph.appendChild(div);
+        div.appendChild(p);
+        div.appendChild(removeButton);
     })
 }
 
