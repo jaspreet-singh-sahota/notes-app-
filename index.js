@@ -13,6 +13,14 @@ const filters = {
 
 const notes = getSavedNotes()
 
+const removeNote = (id) => {
+    const noteId = notes.findIndex(note => note.id === id);
+
+    if (noteId !== -1) {
+        notes.splice(noteId, 1)
+    }
+}
+
 const renderNotes = function (notes, filters) {
     const result = notes.filter(note => {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
@@ -25,6 +33,12 @@ const renderNotes = function (notes, filters) {
         const div = document.createElement('div');
         const p = document.createElement('span');
         const removeButton = document.createElement('button')
+        
+        removeButton.addEventListener('click', function () {
+            removeNote(item.id)
+            saveNotes(notes)
+            renderNotes(notes, filters)
+        })
 
         removeButton.textContent = 'X'
         p.textContent = item.title
@@ -36,6 +50,10 @@ const renderNotes = function (notes, filters) {
 
 renderNotes(notes, filters)
 
+const saveNotes = (notes) => {
+    localStorage.setItem('notes', JSON.stringify(notes));
+}
+
 document.querySelector('#notes-form').addEventListener('submit', function (e) {
     e.preventDefault();
     notes.push({
@@ -43,7 +61,7 @@ document.querySelector('#notes-form').addEventListener('submit', function (e) {
         title: e.target.elements.titleText.value,
         body: e.target.elements.noteText.value,
     })
-    localStorage.setItem('notes', JSON.stringify(notes));
+    saveNotes(notes)
     renderNotes(notes, filters)
     e.target.elements.titleText.value = '';
     e.target.elements.noteText.value = ''
